@@ -1,7 +1,0 @@
-{
-  "compilerOptions": {
-    "strict": true,
-    "module": "ESNext",
-    "moduleResolution": "nodenext"
-  }
-}
