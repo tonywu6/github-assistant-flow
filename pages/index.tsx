@@ -8,7 +8,16 @@ function Profile() {
   if (!data?.data.avatar_url) {
     return null
   }
-  return <Image width={64} height={64} placeholder="blur" src={`${data.data.avatar_url}&s=128`} alt="user profile" />
+  return (
+    <Image
+      width={64}
+      height={64}
+      src={`${data.data.avatar_url}&s=128`}
+      alt="user profile"
+      placeholder="blur"
+      blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiB4PSIwIiB5PSIwIiBmaWxsPSIjZDNkM2QzIiAvPjwvc3ZnPg=="
+    />
+  )
 }
 
 function LoginButton() {
