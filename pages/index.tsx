@@ -20,7 +20,7 @@ function Profile() {
     return null
   }
   return (
-    <div style={{ width: '64px', height: '64px' }}>
+    <div style={{ minHeight: 64 }}>
       <Image
         width={64}
         height={64}
