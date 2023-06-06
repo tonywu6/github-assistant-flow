@@ -16,27 +16,26 @@ const HStack = styled.div`
 function Profile() {
   const { octokit, cacheKey } = useOctokit()
   const { data } = useSWRImmutable(cacheKey('user'), () => octokit.rest.users.getAuthenticated())
-  if (!data?.data.avatar_url) {
-    return null
-  }
   return (
-    <div style={{ minHeight: 64 }}>
-      <Image
-        width={64}
-        height={64}
-        src={`${data.data.avatar_url}&s=128`}
-        alt="user profile"
-        placeholder={
-          <Image
-            style={{ width: '64px', height: '64px' }}
-            preview={false}
-            width={64}
-            height={64}
-            alt="user profile"
-            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiB4PSIwIiB5PSIwIiBmaWxsPSIjZDNkM2QzIiAvPjwvc3ZnPg=="
-          />
-        }
-      />
+    <div style={{ minHeight: 64, minWidth: 64 }}>
+      {data?.data.avatar_url ? (
+        <Image
+          width={64}
+          height={64}
+          src={`${data?.data.avatar_url}&s=128`}
+          alt="user profile"
+          placeholder={
+            <Image
+              style={{ width: '64px', height: '64px' }}
+              preview={false}
+              width={64}
+              height={64}
+              alt="user profile"
+              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiB4PSIwIiB5PSIwIiBmaWxsPSIjZDNkM2QzIiAvPjwvc3ZnPg=="
+            />
+          }
+        />
+      ) : null}
     </div>
   )
 }
