@@ -8,7 +8,7 @@ function Profile() {
     return null
   }
   // eslint-disable-next-line @next/next/no-img-element
-  return <img width={64} height={64} src={data.data.avatar_url} alt="user profile" />
+  return <img width={64} height={64} src={`${data.data.avatar_url}&s=64`} alt="user profile" />
 }
 
 function LoginButton() {
@@ -20,7 +20,6 @@ function LoginButton() {
     params.set('redirect_uri', process.env.GITHUB_OAUTH_REDIRECT)
   }
   endpoint.search = params.toString()
-
   const { authenticated } = useOctokit()
   if (!authenticated) {
     return <a href={endpoint.toString()}>Login with GitHub</a>

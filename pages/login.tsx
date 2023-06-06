@@ -1,22 +1,19 @@
 import { useRouter } from 'next/router'
 import { Octokit } from 'octokit'
 import { useMemo } from 'react'
-import useSWR from 'swr'
 import useSWRImmutable from 'swr/immutable'
-
-const AUTH_ENDPOINT = new URL(process.env.GITHUB_OAUTH_ENDPOINT as string)
-
-let currentCode: string | undefined
 
 function createRequest(code?: string): () => Promise<{ token?: string } | undefined> {
   if (!code) {
     return () => Promise.resolve(undefined)
   }
   const params = new URLSearchParams({ code })
-  const endpoint = new URL(AUTH_ENDPOINT.href)
+  const endpoint = new URL(process.env.GITHUB_OAUTH_ENDPOINT as string)
   endpoint.search = params.toString()
   return () => fetch(endpoint).then((r) => r.json())
 }
+
+let currentCode: string | undefined
 
 export function useOctokit(code = currentCode) {
   const { data, error } = useSWRImmutable(() => code, createRequest(code as string))
