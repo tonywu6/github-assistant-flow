@@ -8,7 +8,7 @@ function Profile() {
   if (!data?.data.avatar_url) {
     return null
   }
-  return <Image width={64} height={64} src={`${data.data.avatar_url}&s=128`} alt="user profile" />
+  return <Image width={64} height={64} placeholder="blur" src={`${data.data.avatar_url}&s=128`} alt="user profile" />
 }
 
 function LoginButton() {
