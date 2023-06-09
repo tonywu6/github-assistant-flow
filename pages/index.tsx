@@ -59,7 +59,7 @@ function LoginButton() {
 function CommentSection() {
   const { octokit, cacheKey } = useOctokit()
 
-  const { trigger, data, error } = useSWRMutation(
+  const { trigger, data, error, isMutating } = useSWRMutation(
     cacheKey('comment'),
     (url, { arg: { comment } }: { arg: { comment: string } }) =>
       octokit?.rest.issues.createComment({
@@ -89,7 +89,7 @@ function CommentSection() {
             Thank you for participating! See your comment at <a href={data?.data.html_url}>{data?.data.html_url}</a>
           </Typography.Paragraph>
         ) : (
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={isMutating}>
             Submit comment
           </Button>
         )}
